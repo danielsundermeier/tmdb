@@ -1,2 +1,2 @@
-# tmdb
-Codeigniter TmDB API with fall-back-language
+# TmDB API
+Codeigniter TmDB API for www.themovieDB.org with fall-back-language
