@@ -1,5 +1,11 @@
 <?php if(! defined('BASEPATH')) exit('No direct script access allowed');
 
+  /**
+   * @author Daniel Sundermeier
+   * 
+   * origninally developed for www.serienguide.tv
+   */
+
   class TmDB
   {
     const API_VERSION = '3';
