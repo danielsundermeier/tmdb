@@ -177,14 +177,15 @@
      * 
      * @return array
      */
-    public function get_movie($id, $lang = NULL)
+    public function get_movie($id, $append)
     {
       // Default language
       if(empty($lang)) { $lang = $this->default_language; }
 
       // Params
       $params = array(
-        'language' => $lang
+        'language'           => $lang,
+        'append_to_response' => $append
       );
       
       $result = $this->make_call('movie/'.$id, $params);
@@ -192,7 +193,8 @@
       if(empty($result['title']))
       {
         $params = array(
-          'language' => $this->fallback_language
+          'language'           => $this->fallback_language,
+          'append_to_response' => $append
         );
         
         return $this->make_call('movie/'.$id, $params);
@@ -559,7 +561,7 @@
      * @param string $method
      * @return mixed
      */
-    private function make_call($call, $params = NULL, $method = TMDb::GET)
+    private function make_call($call, $params = NULL, $method = 'GET')
     {
       // API Key einfügen
       $params['api_key'] = $this->apikey;
