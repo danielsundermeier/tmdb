@@ -582,8 +582,15 @@
       $http_code = (string)curl_getinfo($ch, CURLINFO_HTTP_CODE);
       if($http_code{0} != 2)
       {
-        $this->error = '[URI='.$_SERVER["REQUEST_URI"].'] Fehler: '.$response.' ['.$url.']';        
+        if($http_code == 429)
+        {
+          sleep(10);
+          $this->make_call($call, $params);
+        }
+        
+        $this->error = $response;         
         // Debug
+        //$error = 'HTTP-CODE: '.$http_code.' [URI='.$_SERVER["REQUEST_URI"].'] Fehler: '.$response.' ['.$url.']'; 
         //log_message('DEBUG', $this->error);
         
         return FALSE;
